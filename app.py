@@ -28,8 +28,8 @@ class User(db.Model):
     def __init__(self, name, email):
         self.name = name
         self.email = email
-
-s3 = boto3.client('s3', aws_access_key_id= os.environ['aws_access_key_id'], aws_secret_access_key=os.environ['aws_secret_access_key'], region=os.environ['region'])
+s3 = boto3.client('s3')
+# s3 = boto3.client('s3', aws_access_key_id= os.environ['aws_access_key_id'], aws_secret_access_key=os.environ['aws_secret_access_key'], region=os.environ['region'])
 obj = s3.get_object(Bucket="best-practice-bucket-of-yaya", Key="hello.gif")
 gifi = obj['Body'].read()
 gifi_base64 = base64.b64encode(gifi).decode('utf-8')
