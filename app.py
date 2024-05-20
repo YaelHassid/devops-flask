@@ -30,11 +30,11 @@ class User(db.Model):
         self.email = email
 
 
-session = boto3.Session(
-    aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
-    aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
-    region_name=os.environ['REGION']
-)
+# session = boto3.Session(
+#     aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
+#     aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY'],
+#     region_name=os.environ['REGION']
+# )
 
 # s3 = session.client('s3')
 s3 = boto3.client('s3')
