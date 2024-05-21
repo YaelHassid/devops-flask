@@ -59,7 +59,7 @@ Before running this project, ensure you have the following:
   );"
   
   sudo docker-compose exec postgress_server psql -U postgres -d usersdb -c "\dt" """
-- Add the Role you've created as the IAM profile to the launch template 
+- Add the Role you've created as the IAM instance profile to the launch template 
 - Create an Auto Scaling Group with the Launch template you've created 
 
 ### 3. Load Balancer
