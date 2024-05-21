@@ -20,6 +20,10 @@ Before running this project, ensure you have the following:
 - Update your Flask application to use the new S3 bucket name and image file name.
 
 ### 2. Auto Scaling Group
+- Create an IAM role with these permissions: <br />
+  1. AmazonEC2FullAccess
+  2. AmazonS3ReadOnlyAccess
+  3. CloudWatchLogsFullAccess
 - Create a launch template with this user data:<br />
   """#!/bin/bash
   sudo yum update -y
@@ -55,7 +59,7 @@ Before running this project, ensure you have the following:
   );"
   
   sudo docker-compose exec postgress_server psql -U postgres -d usersdb -c "\dt" """
-  
+- Add the Role you've created as the IAM profile to the launch template 
 - Create an Auto Scaling Group with the Launch template you've created 
 
 ### 3. Load Balancer
