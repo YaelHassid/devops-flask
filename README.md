@@ -20,7 +20,7 @@ Before running this project, ensure you have the following:
 - Update your Flask application to use the new S3 bucket name and image file name.
 
 ### 2. Auto Scaling Group
-- Create a launch template with this user data:\n
+- Create a launch template with this user data:<br />
   """#!/bin/bash
   sudo yum update -y
   sudo yum install git -y
@@ -31,7 +31,6 @@ Before running this project, ensure you have the following:
   sudo git clone https://github.com/YaelHassid/devops-flask.git
   cd devops-flask/
   
-  # Create .env file with correct database settings
   cat <<EOF > .env
   DB_USERNAME=postgres
   DB_PASSWORD=postgres123
@@ -40,16 +39,13 @@ Before running this project, ensure you have the following:
   DB_PORT=5432
   EOF
   
-  # Build and start the Docker services
   sudo docker-compose up --build -d
   
-  # Wait for the PostgreSQL server to be ready
   until sudo docker-compose exec postgress_server pg_isready -U postgres; do
     echo "Waiting for PostgreSQL to be ready..."
     sleep 5
   done
   
-  # Run the database setup commands
   sudo docker-compose exec postgress_server psql -U postgres -c "CREATE DATABASE usersdb;"
   sudo docker-compose exec postgress_server psql -U postgres -d usersdb -c "
   CREATE TABLE users (
@@ -58,7 +54,6 @@ Before running this project, ensure you have the following:
     email VARCHAR(250) NOT NULL
   );"
   
-  # Check if the table was created successfully
   sudo docker-compose exec postgress_server psql -U postgres -d usersdb -c "\dt" """
   
 - Create an Auto Scaling Group with the Launch template you've created 
