@@ -59,7 +59,8 @@ Before running this project, ensure you have the following:
     email VARCHAR(250) NOT NULL
   );"
   
-  sudo docker-compose exec postgress_server psql -U postgres -d usersdb -c "\dt" ```
+  sudo docker-compose exec postgress_server psql -U postgres -d usersdb -c "\dt"
+  ```
 - Add the Role you've created as the IAM instance profile to the launch template 
 - Create an Auto Scaling Group with the Launch template you've created 
 
